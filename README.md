@@ -1,3 +1,3 @@
 # SpringBoot Jpa Start
 
-2021. 03. 02
+2021-03-02
