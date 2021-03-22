@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class MemberRepositoryTest {
 
-    @Autowired MemberRepository memberRepository;
+
 
     @Test
     /**
@@ -25,19 +25,6 @@ public class MemberRepositoryTest {
     @Transactional
     @Rollback(value = false) // 위의 어노테이션의 기본 롤백을 사용안하려면 false로 주면 값이 남는다.
     public void testMember() throws Exception {
-        //given
-        Member member = new Member();
-        member.setUsername("memberA");
 
-        //when
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.find(saveId);
-
-        //then
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-        // == 비교, 같은 트랜잭션 안에서 같은 영속성 컨택스트를 가지기 때문에 같다
-        Assertions.assertThat(findMember).isEqualTo(member);
-        System.out.println("findMember == member -> " + (findMember == member));
     }
 }

@@ -1,3 +1,3 @@
-# SpringBoot Jpa Start
+# SpringBoot, JPA 기반 Toy
 
-2021-03-02
+- 
