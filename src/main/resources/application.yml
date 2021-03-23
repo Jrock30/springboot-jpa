@@ -2,18 +2,22 @@
 spring:
   datasource:
   # MVCC=TRUE 넣어주는 것을 권장 (1.4.200 이전 버전)
-  url: jdbc:h2:tcp://localhost/~/shop;MVCC=TRUE
-  username: sa
-  password:
-  driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/shop
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
 
-jpa:
-  hibernate:
-    ddl-auto: create # 자동으로 테이블을 만들어주는 기능
-  properties:
+  h2:
+    console:
+      enabled: false
+
+  jpa:
     hibernate:
-      show_sql: true
-      format_sql: true
+      ddl-auto: create # 자동으로 테이블을 만들어주는 기능
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
 
 logging:
   level:
