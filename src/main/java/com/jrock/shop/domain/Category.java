@@ -29,12 +29,18 @@ public class Category {
     private List<Item> items = new ArrayList<>();
 
     // 카테고리 계층 구조, 내 자신을 부모로 ( 이름만 내 것이지 다른 테이블이라 보자 )
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 
     // 카테고리 계층 구조, 내 자신을 자식으로 ( 이름만 내 것이지 다른 테이블이라 보자 )
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
+
+    // 연관관계 메서드
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
 
 }
