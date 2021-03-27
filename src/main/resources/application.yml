@@ -1,5 +1,8 @@
 
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
   datasource:
   # MVCC=TRUE 넣어주는 것을 권장 (1.4.200 이전 버전)
     url: jdbc:h2:tcp://localhost/~/shop
