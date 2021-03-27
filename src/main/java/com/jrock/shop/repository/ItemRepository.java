@@ -16,7 +16,7 @@ public class ItemRepository {
 
     public void save(Item item) {
         if (item.getId() == null) { // 저장하기 전까지 id 값이 없으니 새로 생성한 객체 (신규등록)
-            em.persist(em);
+            em.persist(item);
         } else {
             em.merge(item); // update 비슷한 ( DB에 id 값이 있으므로 수정 )
         }
