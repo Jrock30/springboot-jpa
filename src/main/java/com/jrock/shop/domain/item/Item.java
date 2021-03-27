@@ -1,6 +1,7 @@
 package com.jrock.shop.domain.item;
 
 import com.jrock.shop.domain.Category;
+import com.jrock.shop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ public abstract class Item {
 
     @Id
     @Getter
+    @GeneratedValue
     @Column(name = "item_id")
     private Long id;
 
@@ -27,4 +29,26 @@ public abstract class Item {
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 
+    /**
+     * 비즈니스 로직
+     * 데이터를 가지고 있는 쪽에 비즈니스 메서드를 가지고 있는 것이 좋다, 그래야 응집력이 있다.
+     * 변경할 것이 있으면 의미있는 메서드를 만들어서 넣어라 ( 무분별하게 세터 주입 X )
+     */
+    /**
+     *  stock 증가
+     */
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    /**
+     * stock 감소
+     */
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
 }

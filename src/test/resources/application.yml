@@ -1,0 +1,31 @@
+# 테스트에 resources 가 있으면 테스트 할 때는 이 것을 먼저 불러온다.
+# 테스트는 따로 설정을 가져가는 것이 좋다.
+# 스프링부트에는 아래의 설정이 없으면 자동으로 메모리로 돌린다.
+
+spring:
+
+  ## 스프링부트에는 아래의 설정이 없으면 자동으로 메모리로 돌린다.
+  datasource:
+    url: jdbc:h2:mem:shop # 이렇게 하면 메모리 디비로 사용함. 테스트할 때 좋음 완전 개별환경에서 실행.
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: create # 자동으로 테이블을 만들어주는 기능, 시작 시점에 Drop
+#      ddl-auto: create-drop # 자동으로 테이블을 만들어주는 기능, 종료 시점에 Drop
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+  ## 스프링부트에는 위의 설정이 없으면 자동으로 메모리로 돌린다.
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+#    org.hibernate.type: trac # 쿼리 parameter 보여주는 옵션
