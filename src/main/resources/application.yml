@@ -16,7 +16,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create # 자동으로 테이블을 만들어주는 기능
+      ddl-auto: none # 자동으로 테이블을 만들어주는 기능
     properties:
       hibernate:
 #        show_sql: true
