@@ -8,6 +8,7 @@ import com.jrock.shop.domain.item.Item;
 import com.jrock.shop.repository.ItemRepository;
 import com.jrock.shop.repository.MemberRepository;
 import com.jrock.shop.repository.OrderRepository;
+import com.jrock.shop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,7 +75,7 @@ public class OrderService {
     }
 
     // 검색
-//    public List<Order> findOrders(OrderSearch orderSearch) {
-//        return orderRepository.findAll(orderSearch);
-//    }
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByString(orderSearch);
+    }
 }
