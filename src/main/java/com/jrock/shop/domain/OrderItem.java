@@ -1,5 +1,6 @@
 package com.jrock.shop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jrock.shop.domain.item.Item;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,6 +23,11 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    /**
+     * 주의: 엔티티를 직접 노출할 때는 양방향 연관관계가 걸린 곳은 꼭! 한곳을 @JsonIgnore 처리 해야 한다.
+     * 안그러면 양쪽을 서로 호출하면서 무한 루프가 걸린다.
+     */
+    @JsonIgnore // 양방향 가는 곳은 @JsonIgnore 를 해주어야한다. 안그러면 무한루프로 떨어진다.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
