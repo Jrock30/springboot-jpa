@@ -6,6 +6,7 @@ import com.jrock.shop.domain.OrderStatus;
 import com.jrock.shop.repository.OrderRepository;
 import com.jrock.shop.repository.OrderSearch;
 import com.jrock.shop.repository.OrderSimpleQueryDto;
+import com.jrock.shop.repository.order.simplequery.OrderSimpleQueryRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ import static java.util.stream.Collectors.toList;
 public class OrderSimpleApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderSimpleQueryRepository orderSimpleQueryRepository;
 
     @GetMapping("/api/v1/simple-orders")
     public List<Order> ordersV1() {
@@ -105,7 +107,7 @@ public class OrderSimpleApiController {
 
     @GetMapping("/api/v4/simple-orders")
     public List<OrderSimpleQueryDto> ordersV4() {
-        return orderRepository.findOrderDtos();
+        return orderSimpleQueryRepository.findOrderDtos();
     }
 
     // 밖에서 RequestDto 처럼 요청하는 Dto는 private을 제외하고 static을 넣어주어야 InnerClass를 불러 올 수 있다.
