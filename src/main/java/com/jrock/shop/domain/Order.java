@@ -28,7 +28,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // casecade ALL 을 등록하면 엔티티당 persist에 등록해줘야 하지만 persist를 전파 함으로써 따로 할 필요 없다. 지울 때도 같이 지워짐.
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    /**
+    /**`
      * 1:1 일 떄는 자주 사용 되는 곳에 FK를 두는 것이 좋다.
      * 예를 들어 주문테이블과 배송 테이블이 있을 경우 주문 테이블을 통해 배송의 데이터를 찾듯이.
      */
