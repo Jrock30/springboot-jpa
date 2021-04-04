@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class Order {
     @JoinColumn(name = "member_id") // FK 가 member_id 가 된다고 생각하자.
     private Member member;
 
+    @BatchSize(size = 1000) // 글로벌 하게 말고 필요한 곳에서만 적용하려면(개별최적화) 어노테이션 활용 ( 여기는 컬렉션에 적용할 때, 컬렉션이 아닌 곳은 엔티티 위에 적용 )
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // casecade ALL 을 등록하면 엔티티당 persist에 등록해줘야 하지만 persist를 전파 함으로써 따로 할 필요 없다. 지울 때도 같이 지워짐.
     private List<OrderItem> orderItems = new ArrayList<>();
 

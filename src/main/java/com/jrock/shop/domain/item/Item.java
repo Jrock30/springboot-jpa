@@ -4,11 +4,13 @@ import com.jrock.shop.domain.Category;
 import com.jrock.shop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@BatchSize(size = 1000) // 글로벌 하게 말고 필요한 곳에서만 적용하려면(개별최적화) 어노테이션 활용 ( 여기는 컬렉션이 아닌 곳에 적용, 컬렉션은 해당 @OneToMany 적용 Order에 orderItems 참고 )
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 싱글테이블 전략(객체는 나누어져 있지만 Item 한 테이블에 다 떄려 박는 형식)
 @DiscriminatorColumn(name = "dtype") // 상속받는 타입을 지정해준다. ( 한 테이블이기 떄문에 타입 필요 )

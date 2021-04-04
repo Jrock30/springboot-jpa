@@ -21,6 +21,7 @@ spring:
       hibernate:
 #        show_sql: true
         format_sql: true
+        default_batch_fetch_size: 100 # IN 쿼리의 갯수 ( 1000개 컬렉션이 있으면 100개로 설정했으니 100개씩 10번 루프 돌림 )
 
 logging:
   level:
