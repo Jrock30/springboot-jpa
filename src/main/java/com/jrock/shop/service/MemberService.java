@@ -62,12 +62,14 @@ public class MemberService {
     // 한건 조회
 //    @Transactional(readOnly = true)  // 읽기 전용 트랜잭션 이므로 디비에 부하가 덜 간다.(읽기에는 가급적으로 넣자)
     public Member findOne(Long id) {
-        return memberRepository.findOne(id);
+//        return memberRepository.findOne(id);
+        return memberRepository.findById(id).get(); // Spring Data Jpa
     }
 
     @Transactional
     public void update(Long id, String name) {
-        Member member = memberRepository.findOne(id);
+//        Member member = memberRepository.findOne(id);
+        Member member = memberRepository.findById(id).get(); // Spring Data Jpa
         member.setName(name);
     }
 }

@@ -9,3 +9,4 @@
   - 지연 로딩과 조회 성능 최적화
   - 엔티티를 DTO로 변환 페치 조인 최적화
   - JPA에서 DTO로 바로 조회
+  - OSIV (Open Session In view)
