@@ -11,6 +11,7 @@ out/
 .gradle
 gradle/
 target/
+generated/
 
 ### IntelliJ IDEA ###
 .idea
